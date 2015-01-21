@@ -38,7 +38,7 @@ Once it's done,
 we can ask the library to read our data file for us:
 
 ~~~ {.perl}
-PDL->rcols( 'inflammation-01.csv', [], colsep => ',' );
+PDL->rcols( 'data/inflammation-01.csv', [], { colsep => ',' } );
 ~~~
 ~~~ {.output}
 [
