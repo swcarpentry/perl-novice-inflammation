@@ -1,9 +1,8 @@
+README.html
+LAYOUT.html
+FAQ.html
+DESIGN.html
 *~
 *.pyc
 _site
-README.html
-
-DESIGN.html
-FAQ.html
-LAYOUT.html
-
+.DS_Store
