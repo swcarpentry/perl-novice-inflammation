@@ -27,9 +27,49 @@
         <div class="span10 offset1">
           <h1 class="title">Programming with Perl</h1>
           <h2 class="subtitle">Analyzing Patient Data</h2>
-<blockquote>
-<h2>FIXME</h2>
-</blockquote>
+<div id="learning-objectives" class="objectives">
+<h2>Learning Objectives</h2>
+<ul>
+<li>Explain what a library is, and what libraries are used for.</li>
+<li>Load a Perl library and use the things it contains.</li>
+<li>Read tabular data from a file into a program.</li>
+<li>Assign values to variables.</li>
+<li>Select individual values and subsections from data.</li>
+<li>Perform operations on arrays of data.</li>
+<li>Display simple graphs.</li>
+</ul>
+</div>
+<p>Words are useful, but what's more useful are the sentences and stories we build with them. Similarly, while a lot of powerful tools are built into languages like Perl, even more live in the <strong>libraries</strong> they are used to build.</p>
+<p>In order to load our inflammation data, we need to <strong>import</strong> a library called PDL (short for Perl Data Language). In general you should use this library if you want to do fancy things with numbers, especially if you have matrices. We can load PDL using:</p>
+<pre class="sourceCode perl"><code class="sourceCode perl"><span class="fu">use</span> <span class="kw">strict</span>;    <span class="co"># FIXME: see &lt;https://github.com/zmughal/perl-novice-inflammation/issues/2&gt;</span>
+<span class="fu">use</span> <span class="kw">warnings</span>;
+<span class="fu">use</span> PDL;</code></pre>
+<p>Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Once it's done, we can ask the library to read our data file for us:</p>
+<pre class="sourceCode perl"><code class="sourceCode perl">PDL-&gt;rcols( <span class="kw">&#39;</span><span class="st">inflammation-01.csv</span><span class="kw">&#39;</span>, [], colsep =&gt; <span class="kw">&#39;</span><span class="st">,</span><span class="kw">&#39;</span> );</code></pre>
+<pre class="output"><code>[
+ [ 0  0  …  0  0]
+ [ ⋮  ⋮  ⋱  ⋮  ⋮]
+ [ 0  0  …  2  1]
+ [ 0  1  …  0  0]
+]</code></pre>
+<p>The expression <code>rcols( ... )</code> is a <strong>function call</strong> that asks Perl to run the function <code>rcols</code> that belongs to the <code>PDL</code> library. The <strong>arrow notation</strong> is used in Perl to refer to parts of things <code>thing-&gt;component</code>.</p>
+<p>The call to to <code>rcols</code> has three <strong>parameters</strong>: the name of the file we want to read, a list of the columns to read, and the <strong>delimiter</strong> that separates values on a line. These both need to be character strings (or <strong>strings</strong> for short), so we put them in quotes.</p>
+<p>When we are finished typing and press <code>Enter</code> (or <code>Return</code>), the interpreter runs our command. Since we haven't told it to do anything else with the function's output, the interpreter displays it. In this case, that output is the data we just loaded.</p>
+<p>Our call to <code>numpy.loadtxt</code> read our file, but didn't save the data in memory. To do that, we need to <strong>assign</strong> the array to a <strong>variable</strong>. A variable is just a name for a value, such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. Python's variables must begin with a letter. We can create a new variable simply by assigning a value to it using <code>=</code>. As an illustration, let's step back and instead of considering a table of data, consider the simplest &quot;collection&quot; of data, a single value. The line below assigns a value to a variable:</p>
+<pre class="sourceCode perl"><code class="sourceCode perl"><span class="kw">my</span> <span class="dt">$weight_kg</span> = <span class="dv">55</span>;</code></pre>
+<p>Once a variable has a value, we can print it:</p>
+<pre class="sourceCode perl"><code class="sourceCode perl"><span class="fu">print</span> <span class="dt">$weight_kg</span>, <span class="kw">&quot;</span><span class="ch">\n</span><span class="kw">&quot;</span>; <span class="co"># FIXME: should this be say()?</span></code></pre>
+<pre class="output"><code>55</code></pre>
+<p>and do arithmetic with it:</p>
+<pre class="sourceCode perl"><code class="sourceCode perl"><span class="fu">print</span> <span class="kw">&#39;</span><span class="st">weight in pounds: </span><span class="kw">&#39;</span>, <span class="fl">2.2</span> <span class="kw">*</span> <span class="dt">$weight_kg</span>, <span class="kw">&quot;</span><span class="ch">\n</span><span class="kw">&quot;</span>; <span class="co"># FIXME: say()?</span></code></pre>
+<pre class="output"><code>weight in pounds: 121.0</code></pre>
+<p>We can also change a variable's value by assigning it a new one:</p>
+<pre class="sourceCode perl"><code class="sourceCode perl"><span class="dt">$weight_kg</span> = <span class="fl">57.5</span>;
+<span class="fu">print</span> <span class="kw">&#39;</span><span class="st">weight in kilograms is now:</span><span class="kw">&#39;</span>, <span class="dt">$weight_kg</span>;</code></pre>
+<pre class="output"><code>weight in kilograms is now: 57.5</code></pre>
+<p>FIXME note that we don't need to put a <code>my</code> since we aren't declaring it for the first time.</p>
+<p>As the example above shows, we can print several things at once by separating them with commas.</p>
+<p>If we imagine the variable as a sticky note with a name written on it, assignment is like putting the sticky note on a particular value:</p>
         </div>
       </div>
       <div class="footer">
